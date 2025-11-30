@@ -2,14 +2,27 @@ package com.algaworks.algashop.ordering.domain.validator;
 
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_BIRTHDATE_MUST_IN_PAST;
+import static com.algaworks.algashop.ordering.domain.exception.ErrorMessages.VALIDATION_ERROR_MONEY_MUST_BE_POSITIVE;
 
 public class FieldValidations {
     private FieldValidations() {
 
+    }
+
+    public static void requiresNonBlank(String value) {
+        requiresNonBlank(value, "");
+    }
+
+    public static void requiresNonBlank(String value, String errorMessage) {
+        Objects.requireNonNull(value);
+        if (value.isBlank()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static void requiresValidEmail(String email) {
@@ -23,6 +36,12 @@ public class FieldValidations {
         }
         if (!EmailValidator.getInstance().isValid(email)) {
             throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static void requiresNotNullMoney(BigDecimal moneyValue){
+        if (moneyValue.signum() < 0) {
+            throw new IllegalArgumentException(VALIDATION_ERROR_MONEY_MUST_BE_POSITIVE);
         }
     }
 

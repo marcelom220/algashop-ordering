@@ -2,11 +2,14 @@ package com.algaworks.algashop.ordering.domain.valueobject;
 
 import java.util.Objects;
 
-public record Phone(String value) {
+public record ZipCode(String value) {
 
-    public Phone {
+    public ZipCode {
         Objects.requireNonNull(value);
         if (value.isBlank()) {
+            throw new IllegalArgumentException();
+        }
+        if (value.length() != 5) {
             throw new IllegalArgumentException();
         }
     }
