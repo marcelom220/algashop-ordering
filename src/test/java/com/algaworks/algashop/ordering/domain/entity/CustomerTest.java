@@ -46,7 +46,7 @@ class CustomerTest {
                                 .neighborhood("North Ville")
                                 .city("York")
                                 .state("South California")
-                                .zipCode("12345")
+                                .zipCode(new ZipCode("12345"))
                                 .complement(null)
                                 .build()
                 )

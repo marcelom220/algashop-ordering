@@ -1,5 +1,6 @@
 package com.algaworks.algashop.ordering.domain.valueobject;
 
+import com.algaworks.algashop.ordering.domain.validator.FieldValidations;
 import lombok.Builder;
 
 import java.util.Objects;
@@ -11,15 +12,15 @@ public record Address(
         String neighborhood,
         String city,
         String state,
-        String zipCode
+        ZipCode zipCode
 ) {
     @Builder(toBuilder = true)
     public Address {
-        Objects.requireNonNull(street, "Street cannot be null.");
-        Objects.requireNonNull(number, "Number cannot be null.");
-        Objects.requireNonNull(neighborhood, "Neighborhood cannot be null.");
-        Objects.requireNonNull(city, "City cannot be null.");
-        Objects.requireNonNull(state, "State cannot be null.");
-        Objects.requireNonNull(zipCode, "Zip code cannot be null.");
+        FieldValidations.requiresNonBlank(street);
+        FieldValidations.requiresNonBlank(neighborhood);
+        FieldValidations.requiresNonBlank(city);
+        FieldValidations.requiresNonBlank(number);
+        FieldValidations.requiresNonBlank(state);
+        Objects.requireNonNull(zipCode);
     }
 }

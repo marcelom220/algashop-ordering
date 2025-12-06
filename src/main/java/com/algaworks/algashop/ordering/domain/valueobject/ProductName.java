@@ -1,17 +1,17 @@
 package com.algaworks.algashop.ordering.domain.valueobject;
 
-import java.util.Objects;
+import com.algaworks.algashop.ordering.domain.validator.FieldValidations;
+
 
 public record ProductName(String value) {
+
     public ProductName {
-        Objects.requireNonNull(value, "Product name cannot be null.");
-        if (value.isBlank()) {
-            throw new IllegalArgumentException("Product name cannot be blank.");
-        }
+        FieldValidations.requiresNonBlank(value);
     }
 
     @Override
     public String toString() {
         return value;
     }
+
 }

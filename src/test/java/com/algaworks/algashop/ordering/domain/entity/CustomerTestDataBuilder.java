@@ -1,6 +1,7 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.valueobject.*;
+import com.algaworks.algashop.ordering.domain.valueobject.id.CustomerId;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
@@ -24,7 +25,7 @@ public class CustomerTestDataBuilder {
                         .neighborhood("North Ville")
                         .city("York")
                         .state("South California")
-                        .zipCode("12345")
+                        .zipCode(new ZipCode("12345"))
                         .complement("Apt. 114")
                         .build());
     }
@@ -49,7 +50,7 @@ public class CustomerTestDataBuilder {
                         .neighborhood("North Ville")
                         .city("York")
                         .state("South California")
-                        .zipCode("12345")
+                        .zipCode(new ZipCode("12345"))
                         .complement("Apt. 114")
                         .build())
                 ;
@@ -74,7 +75,7 @@ public class CustomerTestDataBuilder {
                         .neighborhood("North Ville")
                         .city("York")
                         .state("South California")
-                        .zipCode("12345")
+                        .zipCode(new ZipCode("12345"))
                         .complement("Apt. 114")
                         .build());
     }

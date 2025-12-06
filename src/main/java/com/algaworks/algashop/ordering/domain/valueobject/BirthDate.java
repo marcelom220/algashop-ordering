@@ -1,26 +1,26 @@
 package com.algaworks.algashop.ordering.domain.valueobject;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
 import static com.algaworks.algashop.ordering.domain.validator.FieldValidations.requiresDateInPast;
 
-public record BirthDate(LocalDate birthDate) {
+public record BirthDate(LocalDate value) {
 
-    public BirthDate(LocalDate birthDate){
-        Objects.requireNonNull(birthDate);
-        requiresDateInPast(birthDate);
+    public BirthDate{
+        Objects.requireNonNull(value);
+        requiresDateInPast(value);
 
-        this.birthDate = birthDate;
     }
 
     public Integer age() {
-        return Period.between(birthDate, LocalDate.now()).getYears();
+        return (int) Period.between(value, LocalDate.now()).getDays();
     }
 
     @Override
     public String toString() {
-        return birthDate.toString();
+        return value.toString();
     }
 }

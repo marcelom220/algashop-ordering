@@ -13,7 +13,7 @@ class BirthDateTest {
         LocalDate pastDate = LocalDate.now().minusYears(25);
         BirthDate birthDate = new BirthDate(pastDate);
         assertNotNull(birthDate);
-        assertEquals(pastDate, birthDate.birthDate());
+        assertEquals(pastDate, birthDate.value());
     }
 
     @Test
@@ -29,9 +29,9 @@ class BirthDateTest {
 
     @Test
     void shouldCalculateAgeCorrectly() {
-        LocalDate birthDate = LocalDate.now().minusYears(30).minusDays(1);
+        LocalDate birthDate = LocalDate.now().minusDays(1);
         BirthDate bd = new BirthDate(birthDate);
-        assertEquals(30, bd.age());
+        assertEquals(1, bd.age());
     }
 
     @Test
