@@ -37,6 +37,9 @@ public class ErrorMessages {
     public static final String ERROR_SHOPPING_CART_DOES_NOT_CONTAIN_ITEM
             = "Shopping cart %s does not contain item %s";
 
+    public static final String ERROR_SHOPPING_CART_DOES_NOT_CONTAIN_PRODUCT
+            = "Shopping cart %s does not contain product %s";
+
     public static final String ERROR_SHOPPING_CART_ITEM_INCOMPATIBLE_PRODUCT
             = "Product %s is not compatible with item %s";
 }

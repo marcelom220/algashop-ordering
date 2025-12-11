@@ -2,6 +2,7 @@ package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.exception.ProductOutOfStockException;
 import com.algaworks.algashop.ordering.domain.exception.ShoppingCartDoesNotContainItemException;
+import com.algaworks.algashop.ordering.domain.exception.ShoppingCartDoesNotContainProductException;
 import com.algaworks.algashop.ordering.domain.exception.ShoppingCartItemIncompatibleProductException;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.Product;
@@ -93,7 +94,7 @@ class ShoppingCartTest {
         cart.addItem(ProductTestDataBuilder.aProductAltMousePad().build(), new Quantity(1));
         Product incompatibleProduct = ProductTestDataBuilder.aProductAltRamMemory().build();
 
-        assertThatExceptionOfType(ShoppingCartDoesNotContainItemException.class)
+        assertThatExceptionOfType(ShoppingCartDoesNotContainProductException.class)
                 .isThrownBy(() -> cart.refreshItem(incompatibleProduct));
     }
 

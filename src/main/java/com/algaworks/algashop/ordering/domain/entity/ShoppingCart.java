@@ -1,6 +1,7 @@
 package com.algaworks.algashop.ordering.domain.entity;
 
 import com.algaworks.algashop.ordering.domain.exception.ShoppingCartDoesNotContainItemException;
+import com.algaworks.algashop.ordering.domain.exception.ShoppingCartDoesNotContainProductException;
 import com.algaworks.algashop.ordering.domain.valueobject.Money;
 import com.algaworks.algashop.ordering.domain.valueobject.Product;
 import com.algaworks.algashop.ordering.domain.valueobject.Quantity;
@@ -110,7 +111,7 @@ public class ShoppingCart {
         return this.items.stream()
                 .filter(item -> item.productId().equals(productId))
                 .findFirst()
-                .orElseThrow(() -> new ShoppingCartDoesNotContainItemException(this.id));
+                .orElseThrow(() -> new ShoppingCartDoesNotContainProductException(this.id, productId));
     }
 
     private void recalculateTotals() {
