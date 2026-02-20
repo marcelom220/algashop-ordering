@@ -31,7 +31,11 @@ class OrderPersistenceEntityDisassemblerTest {
                 s -> assertThat(s.canceledAt()).isEqualTo(persistenceEntity.getCanceledAt()),
                 s -> assertThat(s.readyAt()).isEqualTo(persistenceEntity.getReadyAt()),
                 s -> assertThat(s.status()).isEqualTo(OrderStatus.valueOf(persistenceEntity.getStatus())),
-                s -> assertThat(s.paymentMethod()).isEqualTo(PaymentMethod.valueOf(persistenceEntity.getPaymentMethod()))
+                s -> assertThat(s.paymentMethod()).isEqualTo(PaymentMethod.valueOf(persistenceEntity.getPaymentMethod())),
+               //draft nao tem ainda
+               // s -> assertThat(s.billing()).isNotNull(),
+                //s -> assertThat(s.shipping()).isNotNull(),
+                s -> assertThat(s.items()).hasSize(persistenceEntity.getItems().size())
         );
     }
 
