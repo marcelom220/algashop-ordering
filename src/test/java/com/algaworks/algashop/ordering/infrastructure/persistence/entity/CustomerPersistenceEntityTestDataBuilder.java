@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import static com.algaworks.algashop.ordering.domain.model.entity.CustomerTestDataBuilder.DEFAULT_CUSTOMER_ID;
+
 public class CustomerPersistenceEntityTestDataBuilder {
 
     private CustomerPersistenceEntityTestDataBuilder() {
@@ -13,7 +15,7 @@ public class CustomerPersistenceEntityTestDataBuilder {
 
     public static CustomerPersistenceEntity.CustomerPersistenceEntityBuilder aCustomer() {
         return CustomerPersistenceEntity.builder()
-                .id(UUID.randomUUID())
+                .id(DEFAULT_CUSTOMER_ID.value())
                 .firstName("John")
                 .lastName("Doe")
                 .birthDate(LocalDate.of(1990, 1, 1))

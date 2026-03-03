@@ -59,13 +59,13 @@ public class CustomersPersistenceProvider implements Customers {
     private void update(Customer customer, CustomerPersistenceEntity persistenceEntity) {
         persistenceEntity = assembler.merge(persistenceEntity, customer);
         entityManager.detach(persistenceEntity);
-        repository.saveAndFlush(persistenceEntity);
+        persistenceEntity = repository.saveAndFlush(persistenceEntity);
         updateVersion(customer, persistenceEntity);
     }
 
     private void insert(Customer customer) {
         CustomerPersistenceEntity persistenceEntity = assembler.toPersistenceEntity(customer);
-        repository.saveAndFlush(persistenceEntity);
+        persistenceEntity = repository.saveAndFlush(persistenceEntity);
         updateVersion(customer, persistenceEntity);
     }
 
