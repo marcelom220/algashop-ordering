@@ -57,6 +57,17 @@ public class CustomersPersistenceProvider implements Customers {
         return repository.count();
     }
 
+    @Override
+    public Optional<Customer> ofEmail(Email email) {
+        return repository.findByEmail(email.value())
+                .map(disassembler::toDomainEntity);
+    }
+
+    @Override
+    public boolean isEmailUnique(Email email, CustomerId exceptCustomerId) {
+        return !repository.existsByEmailAndIdNot(email.value(), exceptCustomerId.value());
+    }
+
     private void update(Customer customer, CustomerPersistenceEntity persistenceEntity) {
         persistenceEntity = assembler.merge(persistenceEntity, customer);
         entityManager.detach(persistenceEntity);
@@ -78,9 +89,5 @@ public class CustomersPersistenceProvider implements Customers {
         version.setAccessible(false);
     }
 
-    @Override
-    public Optional<Customer> ofEmail(Email email) {
-        return repository.findByEmail(email.value())
-                .map(disassembler::toDomainEntity);
-    }
+
 }
